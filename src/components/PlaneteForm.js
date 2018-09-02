@@ -8,14 +8,17 @@ export class PlaneteForm extends Component {
         this.client = new Client('http://127.0.0.1:8000');
         this.state = {
             nom: '',
-            ordre: '',
-            couleur: 1,
+            couleur: '',
+            ordre: 1,
           };
         this.handleChange = this.handleChange.bind(this);
       }
 
+
       postPlanete = event => {
+
         event.preventDefault();
+        
         const planete = {
           nom : this.state.nom,
           couleur: this.state.couleur,
@@ -23,9 +26,10 @@ export class PlaneteForm extends Component {
         }
         console.log(planete)
   
-        this.client.createPlanete(this.state.planete)
+        this.client.createPlanete(planete)
         .then(response => {
           console.log(response)
+          window.location.reload();
         })
         .catch(error => {
           console.log(error);
@@ -35,7 +39,6 @@ export class PlaneteForm extends Component {
 
     handleChange (event) {
         this.setState({ [event.target.name]: event.target.value });
-        console.log(this.state);
       }
 
 

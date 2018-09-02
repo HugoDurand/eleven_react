@@ -22,17 +22,8 @@ export class Client {
 
     }
 
-
     createPlanete(planete) {
-
-        const config = {
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
-              'Accept': 'application/json'
-            }
-          };
-
-        return axios.post(`${this.baseUrl}/api/planete`, {planete}, config);
+        return axios.post(`${this.baseUrl}/api/planete`, {nom: planete.nom, couleur: planete.couleur, ordre: planete.ordre})
     }
 
 }
